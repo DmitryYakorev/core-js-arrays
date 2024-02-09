@@ -459,7 +459,7 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([]) => []
  */
 function getHexRGBValues(arr) {
-  return arr;
+  return arr + 1;
 }
 
 /**
