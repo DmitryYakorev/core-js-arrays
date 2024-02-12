@@ -542,8 +542,13 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = [];
+  arr.map((el, i) => {
+    res.push(...Array.from({ length: i + 1 }, () => el));
+    return el;
+  });
+  return res;
 }
 
 /**
@@ -559,8 +564,8 @@ function propagateItemsByPositionIndex(/* arr */) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  return arr.splice(-n).concat(arr);
 }
 
 /**
@@ -576,8 +581,32 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  function numbers(el) {
+    switch (el) {
+      case 'zero':
+        return 0;
+      case 'one':
+        return 1;
+      case 'two':
+        return 2;
+      case 'three':
+        return 3;
+      case 'four':
+        return 4;
+      case 'five':
+        return 5;
+      case 'six':
+        return 6;
+      case 'seven':
+        return 7;
+      case 'eight':
+        return 8;
+      default:
+        return 9;
+    }
+  }
+  return arr.sort((a, b) => numbers(a) - numbers(b));
 }
 
 /**
@@ -599,8 +628,14 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length < 2) return arr;
+  const middle = Math.floor(arr.length / 2);
+  const head = [...arr.slice(0, middle)];
+  const tail = [...arr.slice(-middle)];
+  arr.splice(0, middle, ...tail);
+  arr.splice(-middle, middle, ...head);
+  return arr;
 }
 
 module.exports = {
